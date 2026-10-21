@@ -1,0 +1,144 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-sans: 'Inter', system-ui, sans-serif;
+    --font-serif: 'Playfair Display', Georgia, serif;
+    --font-handwriting: 'Caveat', cursive;
+    --font-display: 'Outfit', system-ui, sans-serif;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-sans antialiased text-gray-900;
+    font-family: var(--font-sans);
+  }
+
+  /* Focus styles */
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-rose-500;
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-100;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-400;
+  }
+}
+
+@layer components {
+  .font-handwriting {
+    font-family: var(--font-handwriting);
+  }
+  .font-display {
+    font-family: var(--font-display);
+  }
+  .font-serif {
+    font-family: var(--font-serif);
+  }
+
+  /* Polaroid photo style */
+  .polaroid {
+    @apply bg-white p-3 pb-8 shadow-polaroid;
+  }
+  .polaroid:hover {
+    @apply shadow-polaroid-hover;
+    transform: scale(1.03) rotate(0deg) !important;
+  }
+
+  /* Paper tape effect */
+  .tape {
+    @apply relative;
+  }
+  .tape::before {
+    content: '';
+    @apply absolute -top-3 left-1/2 -translate-x-1/2 w-16 h-6 bg-yellow-200/70 rotate-1;
+  }
+
+  /* Gradient text */
+  .gradient-text-rose {
+    @apply bg-gradient-to-r from-rose-500 to-pink-600 bg-clip-text text-transparent;
+  }
+  .gradient-text-purple {
+    @apply bg-gradient-to-r from-violet-500 to-purple-600 bg-clip-text text-transparent;
+  }
+  .gradient-text-gold {
+    @apply bg-gradient-to-r from-amber-500 to-yellow-400 bg-clip-text text-transparent;
+  }
+
+  /* Glassmorphism card */
+  .glass-card {
+    @apply bg-white/70 backdrop-blur-sm border border-white/50 rounded-2xl shadow-xl;
+  }
+
+  /* Theme-aware section */
+  .theme-section {
+    @apply transition-colors duration-500;
+  }
+}
+
+@layer utilities {
+  /* Scrapbook paper texture overlay */
+  .texture-paper::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='4' height='4' fill='%23f8f0e0'/%3E%3Crect x='0' y='0' width='1' height='1' fill='%23f0e8d8' opacity='0.6'/%3E%3C/svg%3E");
+    opacity: 0.3;
+    pointer-events: none;
+  }
+
+  /* Film grain overlay */
+  .texture-grain::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+    opacity: 0.15;
+    pointer-events: none;
+  }
+
+  /* Hide scrollbar utility */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-float,
+    .animate-sparkle,
+    .animate-candle-flicker,
+    .animate-wiggle {
+      animation: none !important;
+    }
+
+    .transition-all,
+    .transition-colors,
+    .transition-transform,
+    .transition {
+      transition-duration: 0ms !important;
+    }
+  }
+}
