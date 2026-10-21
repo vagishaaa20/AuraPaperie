@@ -64,6 +64,18 @@ export function WeddingCtaSection({ section, experience, theme }: SectionProps) 
                         <span>Back to Top ↑</span>
                     </button>
                 </div>
+
+                <div className="pt-8 opacity-75 hover:opacity-100 transition-opacity">
+                    <a
+                        href="/"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-2 text-xs font-serif tracking-widest uppercase text-stone-400 hover:text-stone-600 transition-colors"
+                    >
+                        <img src="/brand/symbol.png" alt="" className="w-5 h-5 object-contain inline-block" />
+                        <span>Created on AuraPaperie</span>
+                    </a>
+                </div>
             </div>
         </section>
     )

@@ -16,6 +16,7 @@ import SectionEditor from './SectionEditor'
 import ThemeSelector from './ThemeSelector'
 import ExperiencePreview from './ExperiencePreview'
 import PublishModal from './PublishModal'
+import { BrandLogo } from '@/components/BrandLogo'
 
 type ActivePanel = 'sections' | 'theme' | 'media' | 'settings'
 type PreviewDevice = 'desktop' | 'tablet' | 'mobile'
@@ -154,9 +155,10 @@ export default function EditorPage() {
                 <div className="flex items-center justify-between px-4 h-14 gap-3">
                     {/* Left */}
                     <div className="flex items-center gap-3 min-w-0">
-                        <Link to="/dashboard" className="flex items-center gap-1.5 text-gray-500 hover:text-gray-900 transition-colors flex-shrink-0">
-                            <ChevronLeft className="w-4 h-4" />
-                            <span className="text-sm font-medium hidden sm:block">Dashboard</span>
+                        <Link to="/dashboard" className="flex items-center gap-2 text-stone-600 hover:text-stone-900 transition-colors flex-shrink-0 group">
+                            <ChevronLeft className="w-4 h-4 text-stone-400 group-hover:text-stone-700" />
+                            <BrandLogo size="xs" layout="icon-only" to="/dashboard" />
+                            <span className="text-xs uppercase tracking-wider font-bold hidden sm:block">Studio</span>
                         </Link>
                         <div className="w-px h-5 bg-gray-200" />
                         <div className="min-w-0">

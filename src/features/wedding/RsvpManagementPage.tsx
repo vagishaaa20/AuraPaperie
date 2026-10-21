@@ -1,3 +1,4 @@
+import { BrandLogo } from '@/components/BrandLogo'
 import React, { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
@@ -69,16 +70,17 @@ export default function RsvpManagementPage() {
                     <div className="flex items-center gap-3">
                         <Link
                             to="/dashboard"
-                            className="p-2.5 rounded-xl bg-white border border-gray-200 hover:bg-gray-100 transition-colors"
+                            className="p-2.5 rounded-2xl bg-white border border-stone-200 hover:bg-stone-50 transition-colors"
                         >
-                            <ArrowLeft className="w-5 h-5 text-gray-600" />
+                            <ArrowLeft className="w-5 h-5 text-stone-600" />
                         </Link>
+                        <BrandLogo size="xs" layout="icon-only" to="/dashboard" />
                         <div>
-                            <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900">
+                            <h1 className="font-serif text-2xl sm:text-3xl font-bold text-stone-900">
                                 Guest RSVPs & Attendance
                             </h1>
-                            <p className="text-sm text-gray-500">
-                                {experience?.title || 'Wedding Invitation Guestbook'}
+                            <p className="text-xs text-stone-500 font-medium">
+                                {experience?.title || 'Wedding Invitation Guestbook'} · Powered by AuraPaperie
                             </p>
                         </div>
                     </div>
