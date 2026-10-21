@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import auraEmblem from '@/assets/brand/aura-emblem.png';
 
 export interface BrandLogoProps {
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
   layout?: 'horizontal' | 'stacked' | 'icon-only';
-  theme?: 'light' | 'dark';
+  theme?: 'warm' | 'light' | 'dark';
   withSubtitle?: boolean;
   to?: string;
   className?: string;
@@ -14,13 +15,13 @@ export interface BrandLogoProps {
 export const BrandLogo: React.FC<BrandLogoProps> = ({
   size = 'md',
   layout = 'horizontal',
-  theme = 'light',
+  theme = 'warm',
   withSubtitle = true,
   to = '/',
   className = '',
   onClick,
 }) => {
-  // Height presets for the ribbon emblem (maintains natural 2.76:1 aspect ratio)
+  // Height presets for the ribbon & envelope emblem
   const symbolHeights = {
     xs: 'h-5',
     sm: 'h-7',
@@ -38,7 +39,7 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
     xl: 'text-3xl sm:text-4xl font-extrabold',
   }[size];
 
-  // Font sizes for "PERSONALIZED WISHES & INVITES"
+  // Font sizes for subtitle
   const subtitleSizes = {
     xs: 'text-[7px]',
     sm: 'text-[8.5px]',
@@ -47,13 +48,18 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
     xl: 'text-sm',
   }[size];
 
-  // Strong explicit colors to prevent accidental dark-mode inversion on white backgrounds
-  const textClass = theme === 'dark' ? 'text-[#FAF7F2]' : 'text-[#1C2230]';
-  const subtitleClass = theme === 'dark' ? 'text-amber-200/90' : 'text-[#A85A44]';
+  // Warm vibrant color styling (no harsh black)
+  const textClass =
+    theme === 'dark'
+      ? 'text-[#FAF7F2]'
+      : 'text-[#8E3B2A] hover:text-[#B85D43] transition-colors';
+
+  const subtitleClass =
+    theme === 'dark' ? 'text-amber-200/90' : 'text-[#B85D43]';
 
   const SymbolGraphic = (
     <img
-      src="/brand/symbol.png"
+      src={auraEmblem}
       alt="AuraPaperie Ribbon &amp; Envelope Emblem"
       className={`${symbolHeights} w-auto object-contain flex-shrink-0 transition-transform duration-200 group-hover:scale-105 select-none`}
       loading="eager"
@@ -100,7 +106,7 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
     return (
       <Link
         to={to}
-        className="inline-flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A85A44] rounded-xl"
+        className="inline-flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B85D43] rounded-xl"
       >
         {Content}
       </Link>

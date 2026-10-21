@@ -145,7 +145,7 @@ export function FinalMessageSection({ section, experience, theme }: SectionProps
                         className="inline-flex items-center gap-2 text-xs font-serif tracking-wider uppercase opacity-80 hover:opacity-100 transition-opacity"
                         style={{ color: theme.palette.textMuted }}
                     >
-                        <img src="/brand/symbol.png" alt="" className="w-5 h-5 object-contain inline-block" />
+                        <img src="/brand/aura-emblem.png" alt="" className="w-5 h-5 object-contain inline-block" />
                         <span>Crafted on AuraPaperie</span>
                     </a>
                 </div>

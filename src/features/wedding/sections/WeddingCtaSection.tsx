@@ -72,7 +72,7 @@ export function WeddingCtaSection({ section, experience, theme }: SectionProps) 
                         rel="noreferrer"
                         className="inline-flex items-center gap-2 text-xs font-serif tracking-widest uppercase text-stone-400 hover:text-stone-600 transition-colors"
                     >
-                        <img src="/brand/symbol.png" alt="" className="w-5 h-5 object-contain inline-block" />
+                        <img src="/brand/aura-emblem.png" alt="" className="w-5 h-5 object-contain inline-block" />
                         <span>Created on AuraPaperie</span>
                     </a>
                 </div>

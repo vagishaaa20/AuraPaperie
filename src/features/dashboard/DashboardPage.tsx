@@ -86,7 +86,7 @@ function ProjectCard({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95 }}
-            className="bg-white rounded-3xl border border-stone-200 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group flex flex-col justify-between"
+            className="bg-white rounded-3xl border border-stone-200/90 shadow-sm hover:shadow-xl hover:border-[#E8C5BA] transition-all duration-300 overflow-hidden group flex flex-col justify-between"
         >
             <div>
                 {/* Thumbnail / theme preview */}
@@ -94,11 +94,11 @@ function ProjectCard({
                     className="h-36 relative overflow-hidden"
                     style={{ background: theme.previewGradient }}
                 >
-                    <div className="absolute inset-0 bg-stone-900/20 backdrop-blur-[1px]" />
+                    <div className="absolute inset-0 bg-stone-900/15 backdrop-blur-[1px]" />
                     
                     {/* Badge top-left: Project type */}
                     <div className="absolute top-3 left-3">
-                        <span className="px-2.5 py-1 rounded-full text-xs font-bold backdrop-blur-md bg-white/90 text-stone-800 shadow-xs flex items-center gap-1.5">
+                        <span className="px-2.5 py-1 rounded-full text-xs font-bold backdrop-blur-md bg-white/95 text-stone-800 shadow-xs flex items-center gap-1.5">
                             {isWedding ? (
                                 <>
                                     <span className="text-purple-600">💍</span>
@@ -106,7 +106,7 @@ function ProjectCard({
                                 </>
                             ) : (
                                 <>
-                                    <span className="text-[#B4654F]">🎂</span>
+                                    <span className="text-[#C25E48]">🎂</span>
                                     <span>Birthday Gift</span>
                                 </>
                             )}
@@ -137,12 +137,12 @@ function ProjectCard({
                 <div className="p-5">
                     <div className="flex items-start justify-between gap-2">
                         <div className="flex-1 min-w-0">
-                            <h3 className="font-serif font-bold text-stone-900 text-lg truncate group-hover:text-[#B4654F] transition-colors">
+                            <h3 className="font-serif font-bold text-[#4A251D] text-lg truncate group-hover:text-[#C25E48] transition-colors">
                                 {project.title}
                             </h3>
                             <div className="flex items-center gap-2 mt-1">
                                 <span className="text-xs text-stone-500 truncate">
-                                    Recipient: <strong className="font-medium text-stone-700">{project.recipient_name}</strong>
+                                    Recipient: <strong className="font-medium text-[#7A2E1F]">{project.recipient_name}</strong>
                                 </span>
                             </div>
                         </div>
@@ -176,7 +176,7 @@ function ProjectCard({
                                             <button
                                                 key={item.label}
                                                 onClick={() => { item.action(); setMenuOpen(false) }}
-                                                className="w-full px-4 py-2 flex items-center gap-2.5 text-xs font-semibold text-stone-700 hover:bg-stone-50 transition-colors"
+                                                className="w-full px-4 py-2 flex items-center gap-2.5 text-xs font-semibold text-stone-700 hover:bg-[#FAF0EB] hover:text-[#C25E48] transition-colors"
                                             >
                                                 <item.icon className="w-4 h-4 text-stone-400" />
                                                 {item.label}
@@ -197,40 +197,40 @@ function ProjectCard({
                     </div>
 
                     <div className="flex items-center gap-4 mt-3 text-xs text-stone-400">
-                        <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5" />{timeAgo(project.updated_at)}</span>
+                        <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5 text-[#B85D43]" />{timeAgo(project.updated_at)}</span>
                         <span className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5" />{theme.name}</span>
                     </div>
 
                     {project.slug && (
-                        <p className="mt-2 text-xs text-stone-400 font-mono truncate bg-stone-50 p-1.5 rounded-lg border border-stone-100">
+                        <p className="mt-2 text-xs text-stone-500 font-mono truncate bg-[#FAF6F2] p-1.5 rounded-lg border border-[#EFE5DB]">
                             {project.project_type === 'wedding' ? '/wedding/' : '/birthday/'}{project.slug}
                         </p>
                     )}
                 </div>
             </div>
 
-            {/* Bottom Actions */}
+            {/* Bottom Actions - Warm Vibrant Button */}
             <div className="p-5 pt-0 flex gap-2">
                 <Link
                     to={`/editor/${project.id}`}
                     id={`edit-project-${project.id}`}
-                    className="flex-1 py-2.5 px-4 text-xs font-bold text-center text-white bg-[#1C2230] hover:bg-[#B4654F] rounded-xl shadow-xs transition-all"
+                    className="flex-1 py-2.5 px-4 text-xs font-bold text-center text-white bg-gradient-to-r from-[#C25E48] to-[#9E452D] hover:from-[#B85D43] hover:to-[#84382B] rounded-xl shadow-md shadow-[#C25E48]/20 transition-all hover:scale-[1.01]"
                 >
                     Edit Studio
                 </Link>
                 {isWedding ? (
                     <Link
                         to={`/rsvps/${project.id}`}
-                        className="flex items-center gap-1.5 py-2.5 px-3.5 text-xs font-bold text-stone-700 bg-stone-100 hover:bg-stone-200 rounded-xl transition-all"
+                        className="flex items-center gap-1.5 py-2.5 px-3.5 text-xs font-bold text-[#7A2E1F] bg-[#FAF0EB] hover:bg-[#F5E2DA] border border-[#EAD5CC] rounded-xl transition-all"
                     >
-                        <Users className="w-3.5 h-3.5" />
+                        <Users className="w-3.5 h-3.5 text-[#C25E48]" />
                         <span>RSVPs</span>
                     </Link>
                 ) : (
                     <button
                         onClick={handlePublishToggle}
                         disabled={loading}
-                        className="flex items-center gap-1.5 py-2.5 px-3.5 text-xs font-bold text-stone-700 bg-stone-100 hover:bg-stone-200 rounded-xl transition-all disabled:opacity-50"
+                        className="flex items-center gap-1.5 py-2.5 px-3.5 text-xs font-bold text-stone-600 bg-stone-100 hover:bg-[#FAF0EB] hover:text-[#7A2E1F] border border-stone-200 rounded-xl transition-all disabled:opacity-50"
                     >
                         {project.status === 'draft' ? <Globe className="w-3.5 h-3.5" /> : <EyeOff className="w-3.5 h-3.5" />}
                         <span>{project.status === 'draft' ? 'Publish' : 'Unpublish'}</span>
@@ -247,12 +247,12 @@ function EmptyState({ onNew, onQuickBirthday, onQuickWedding }: { onNew: () => v
         <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center py-20 px-4 bg-white rounded-3xl border border-stone-200 shadow-sm max-w-2xl mx-auto"
+            className="text-center py-20 px-4 bg-white rounded-3xl border border-[#EFE3D8] shadow-sm max-w-2xl mx-auto"
         >
-            <div className="w-16 h-16 mx-auto mb-5 rounded-2xl bg-[#F6EBE5] flex items-center justify-center">
-                <img src="/brand/symbol.png" alt="" className="w-10 h-10 object-contain" />
+            <div className="w-16 h-16 mx-auto mb-5 rounded-2xl bg-[#FAF0EB] border border-[#E8D0C5] flex items-center justify-center">
+                <BrandLogo size="xs" layout="icon-only" to="/dashboard" />
             </div>
-            <h3 className="font-serif text-2xl sm:text-3xl font-bold text-stone-900 mb-2">
+            <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#6D2719] mb-2">
                 Your bespoke celebration awaits
             </h3>
             <p className="text-stone-500 text-sm sm:text-base mb-8 max-w-md mx-auto">
@@ -261,21 +261,21 @@ function EmptyState({ onNew, onQuickBirthday, onQuickWedding }: { onNew: () => v
             <div className="flex flex-wrap items-center justify-center gap-3">
                 <button
                     onClick={onQuickBirthday}
-                    className="inline-flex items-center gap-2 px-5 py-3 bg-[#B4654F] hover:bg-[#964E3A] text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-md transition-all hover:scale-[1.02] cursor-pointer"
+                    className="inline-flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-[#D96144] to-[#BD482B] text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-md shadow-[#D96144]/25 hover:scale-[1.02] transition-all cursor-pointer"
                 >
                     <Sparkles className="w-4 h-4" />
                     Quick Birthday Gift
                 </button>
                 <button
                     onClick={onQuickWedding}
-                    className="inline-flex items-center gap-2 px-5 py-3 bg-[#644B78] hover:bg-[#503962] text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-md transition-all hover:scale-[1.02] cursor-pointer"
+                    className="inline-flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-[#9B51E0] to-[#7B2CBF] text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-md shadow-[#9B51E0]/25 hover:scale-[1.02] transition-all cursor-pointer"
                 >
                     <Heart className="w-4 h-4 fill-current" />
                     Cinematic Wedding Invite
                 </button>
                 <button
                     onClick={onNew}
-                    className="inline-flex items-center gap-2 px-5 py-3 bg-stone-100 hover:bg-stone-200 text-stone-800 font-bold text-xs uppercase tracking-wider rounded-xl transition-all cursor-pointer"
+                    className="inline-flex items-center gap-2 px-5 py-3 bg-white hover:bg-[#FAF0EB] text-[#7A2E1F] border border-[#E8D0C5] font-bold text-xs uppercase tracking-wider rounded-xl transition-all cursor-pointer shadow-xs"
                 >
                     <Plus className="w-4 h-4" />
                     Custom Blank Studio
@@ -322,27 +322,27 @@ export default function DashboardPage() {
 
     return (
         <div className="min-h-screen bg-[#FAF8F5] text-stone-900">
-            {/* Top Navigation Bar with Folded Ribbon Logo */}
-            <header className="bg-white/95 backdrop-blur-md border-b border-stone-200 sticky top-0 z-40 shadow-xs">
+            {/* Top Navigation Bar with Folded Ribbon Logo & Warm Styling */}
+            <header className="bg-white/95 backdrop-blur-md border-b border-[#EFE3D8] sticky top-0 z-40 shadow-xs">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
                     {/* Left: Brand & Navigation */}
                     <div className="flex items-center gap-6 min-w-0">
-                        <BrandLogo size="md" layout="horizontal" theme="light" to="/dashboard" />
+                        <BrandLogo size="md" layout="horizontal" theme="warm" to="/dashboard" />
 
-                        <div className="hidden lg:block w-px h-6 bg-stone-200" />
+                        <div className="hidden lg:block w-px h-6 bg-[#EFE3D8]" />
 
-                        <nav className="hidden md:flex items-center gap-1.5">
+                        <nav className="hidden md:flex items-center gap-2">
                             <Link
                                 to="/dashboard"
-                                className="px-3.5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider text-stone-900 bg-stone-100/80 transition-all"
+                                className="px-3.5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider text-[#9E452D] bg-[#FBF1EC] border border-[#EACFC3] transition-all"
                             >
                                 Dashboard
                             </Link>
                             <Link
                                 to="/memories"
-                                className="flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider text-stone-500 hover:text-stone-900 hover:bg-stone-50 transition-all"
+                                className="flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider text-stone-500 hover:text-[#9E452D] hover:bg-[#FBF1EC] transition-all"
                             >
-                                <Brain className="w-3.5 h-3.5 text-[#A85A44]" />
+                                <Brain className="w-3.5 h-3.5 text-[#C25E48]" />
                                 <span>Memory Vault</span>
                             </Link>
                         </nav>
@@ -352,21 +352,21 @@ export default function DashboardPage() {
                     <div className="flex items-center gap-3">
                         <Link
                             to="/memories"
-                            className="md:hidden p-2 rounded-xl text-stone-600 hover:bg-stone-100 border border-stone-200"
+                            className="md:hidden p-2 rounded-xl text-stone-600 hover:bg-[#FBF1EC] border border-[#EFE3D8]"
                             title="Memory Vault"
                         >
-                            <Brain className="w-4 h-4 text-[#A85A44]" />
+                            <Brain className="w-4 h-4 text-[#C25E48]" />
                         </Link>
 
-                        <div className="flex items-center gap-3 bg-stone-50 border border-stone-200 rounded-2xl px-3 py-1.5">
-                            <div className="w-8 h-8 rounded-full bg-[#F5E6E0] text-[#A85A44] border border-[#E8D0C5] flex items-center justify-center font-bold text-xs uppercase flex-shrink-0">
+                        <div className="flex items-center gap-3 bg-[#FAF6F2] border border-[#EFE3D8] rounded-2xl px-3 py-1.5">
+                            <div className="w-8 h-8 rounded-full bg-[#F5E2DA] text-[#9E452D] border border-[#E8C5BA] flex items-center justify-center font-bold text-xs uppercase flex-shrink-0">
                                 {(profile?.display_name || user?.email || 'A')[0]}
                             </div>
                             <div className="hidden sm:block text-left">
-                                <p className="text-xs font-bold text-stone-900 leading-tight max-w-[140px] truncate">
+                                <p className="text-xs font-bold text-[#4A251D] leading-tight max-w-[140px] truncate">
                                     {profile?.display_name ?? user?.email}
                                 </p>
-                                <p className="text-[10px] uppercase tracking-wider font-semibold text-stone-400">
+                                <p className="text-[10px] uppercase tracking-wider font-semibold text-[#B85D43]">
                                     {projects.length} keepsake{projects.length !== 1 ? 's' : ''}
                                 </p>
                             </div>
@@ -374,7 +374,7 @@ export default function DashboardPage() {
 
                         <button
                             onClick={handleSignOut}
-                            className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold uppercase tracking-wider text-stone-500 hover:text-rose-600 hover:bg-rose-50 border border-stone-200 transition-all cursor-pointer"
+                            className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold uppercase tracking-wider text-stone-500 hover:text-[#9E452D] hover:bg-[#FAF0EB] border border-[#EFE3D8] transition-all cursor-pointer"
                             aria-label="Sign out"
                             title="Sign out"
                         >
@@ -389,7 +389,7 @@ export default function DashboardPage() {
             <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
                     <div>
-                        <h1 className="font-serif text-3xl sm:text-4xl font-bold text-[#1C2230]">
+                        <h1 className="font-serif text-3xl sm:text-4xl font-bold text-[#6D2719] tracking-tight">
                             Celebration Keepsakes
                         </h1>
                         <p className="text-stone-500 text-sm mt-1">
@@ -397,12 +397,12 @@ export default function DashboardPage() {
                         </p>
                     </div>
 
-                    {/* Action Buttons */}
+                    {/* Warm Vibrant Action Buttons */}
                     <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                         <button
                             id="quick-birthday-btn"
                             onClick={() => setShowQuickModal(true)}
-                            className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#B4654F] hover:bg-[#9E533F] text-white font-bold rounded-xl shadow-md hover:shadow-lg transition-all hover:scale-[1.02] cursor-pointer text-xs"
+                            className="inline-flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-[#D96144] to-[#BD482B] hover:from-[#BD482B] hover:to-[#A33B21] text-white font-bold rounded-xl shadow-md shadow-[#D96144]/25 transition-all hover:scale-[1.02] cursor-pointer text-xs uppercase tracking-wider"
                         >
                             <Sparkles className="w-4 h-4" />
                             <span>1-Click Birthday</span>
@@ -410,7 +410,7 @@ export default function DashboardPage() {
                         <button
                             id="quick-wedding-btn"
                             onClick={() => setShowWeddingModal(true)}
-                            className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#644B78] hover:bg-[#523A65] text-white font-bold rounded-xl shadow-md hover:shadow-lg transition-all hover:scale-[1.02] cursor-pointer text-xs"
+                            className="inline-flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-[#9B51E0] to-[#7B2CBF] hover:from-[#8B41D0] hover:to-[#6B1CAF] text-white font-bold rounded-xl shadow-md shadow-[#9B51E0]/25 transition-all hover:scale-[1.02] cursor-pointer text-xs uppercase tracking-wider"
                         >
                             <Heart className="w-4 h-4 fill-current" />
                             <span>1-Click Wedding ✦</span>
@@ -418,7 +418,7 @@ export default function DashboardPage() {
                         <button
                             id="new-project-btn"
                             onClick={() => setShowNewModal(true)}
-                            className="inline-flex items-center gap-1.5 px-3.5 py-2.5 bg-white border border-stone-200 text-stone-800 font-semibold rounded-xl hover:bg-stone-50 transition-all cursor-pointer text-xs shadow-xs"
+                            className="inline-flex items-center gap-1.5 px-3.5 py-2.5 bg-white border border-[#E8D0C5] text-[#7A2E1F] font-bold rounded-xl hover:bg-[#FAF0EB] transition-all cursor-pointer text-xs shadow-xs uppercase tracking-wider"
                         >
                             <Plus className="w-4 h-4" />
                             <span>Blank Studio</span>
@@ -426,10 +426,10 @@ export default function DashboardPage() {
                     </div>
                 </div>
 
-                {/* Filter Tabs */}
+                {/* Filter Tabs with Warm Accent Colors */}
                 {projects.length > 0 && (
-                    <div className="flex items-center gap-2 mb-6 border-b border-stone-200 pb-3">
-                        <span className="text-xs uppercase tracking-wider font-bold text-stone-400 mr-2 flex items-center gap-1">
+                    <div className="flex items-center gap-2 mb-6 border-b border-[#EFE3D8] pb-3">
+                        <span className="text-xs uppercase tracking-wider font-bold text-[#B85D43] mr-2 flex items-center gap-1">
                             <Filter className="w-3.5 h-3.5" /> Filter:
                         </span>
                         {[
@@ -440,15 +440,15 @@ export default function DashboardPage() {
                             <button
                                 key={tab.id}
                                 onClick={() => setActiveFilter(tab.id as any)}
-                                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
+                                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-1.5 cursor-pointer ${
                                     activeFilter === tab.id
-                                        ? 'bg-[#1C2230] text-white shadow-xs'
-                                        : 'bg-white text-stone-600 hover:bg-stone-100 border border-stone-200'
+                                        ? 'bg-gradient-to-r from-[#C25E48] to-[#9E452D] text-white shadow-sm'
+                                        : 'bg-white text-stone-600 hover:bg-[#FAF0EB] hover:text-[#9E452D] border border-stone-200'
                                 }`}
                             >
                                 <span>{tab.label}</span>
                                 <span className={`px-1.5 py-0.2 rounded-full text-[10px] ${
-                                    activeFilter === tab.id ? 'bg-white/20 text-white' : 'bg-stone-100 text-stone-500'
+                                    activeFilter === tab.id ? 'bg-white/25 text-white' : 'bg-stone-100 text-stone-500'
                                 }`}>
                                     {tab.count}
                                 </span>
@@ -478,11 +478,11 @@ export default function DashboardPage() {
                             onQuickWedding={() => setShowWeddingModal(true)}
                         />
                     ) : (
-                        <div className="text-center py-16 bg-white rounded-3xl border border-stone-200">
+                        <div className="text-center py-16 bg-white rounded-3xl border border-[#EFE3D8]">
                             <p className="text-stone-500 text-sm">No projects match the selected filter.</p>
                             <button
                                 onClick={() => setActiveFilter('all')}
-                                className="mt-3 text-xs font-bold text-[#B4654F] hover:underline"
+                                className="mt-3 text-xs font-bold text-[#C25E48] hover:underline"
                             >
                                 View all projects
                             </button>
