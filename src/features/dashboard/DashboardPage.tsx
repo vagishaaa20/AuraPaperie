@@ -323,36 +323,62 @@ export default function DashboardPage() {
     return (
         <div className="min-h-screen bg-[#FAF8F5] text-stone-900">
             {/* Top Navigation Bar with Folded Ribbon Logo */}
-            <header className="bg-white/95 backdrop-blur-md border-b border-stone-200 sticky top-0 z-40">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between">
-                    <BrandLogo size="md" layout="horizontal" to="/dashboard" />
+            <header className="bg-white/95 backdrop-blur-md border-b border-stone-200 sticky top-0 z-40 shadow-xs">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+                    {/* Left: Brand & Navigation */}
+                    <div className="flex items-center gap-6 min-w-0">
+                        <BrandLogo size="md" layout="horizontal" theme="light" to="/dashboard" />
 
-                    <nav className="flex items-center gap-2">
+                        <div className="hidden lg:block w-px h-6 bg-stone-200" />
+
+                        <nav className="hidden md:flex items-center gap-1.5">
+                            <Link
+                                to="/dashboard"
+                                className="px-3.5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider text-stone-900 bg-stone-100/80 transition-all"
+                            >
+                                Dashboard
+                            </Link>
+                            <Link
+                                to="/memories"
+                                className="flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider text-stone-500 hover:text-stone-900 hover:bg-stone-50 transition-all"
+                            >
+                                <Brain className="w-3.5 h-3.5 text-[#A85A44]" />
+                                <span>Memory Vault</span>
+                            </Link>
+                        </nav>
+                    </div>
+
+                    {/* Right: User Profile & Actions */}
+                    <div className="flex items-center gap-3">
                         <Link
                             to="/memories"
-                            className="flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs uppercase tracking-wider font-bold text-stone-600 hover:text-stone-900 hover:bg-stone-100 transition-all"
+                            className="md:hidden p-2 rounded-xl text-stone-600 hover:bg-stone-100 border border-stone-200"
+                            title="Memory Vault"
                         >
-                            <Brain className="w-4 h-4 text-[#B4654F]" />
-                            <span className="hidden sm:inline">Memory Vault</span>
+                            <Brain className="w-4 h-4 text-[#A85A44]" />
                         </Link>
-                    </nav>
 
-                    <div className="flex items-center gap-3">
-                        <div className="hidden md:block text-right">
-                            <p className="text-xs font-bold text-stone-900 leading-tight">
-                                {profile?.display_name ?? user?.email}
-                            </p>
-                            <p className="text-[11px] text-stone-400">
-                                {projects.length} keepsake{projects.length !== 1 ? 's' : ''}
-                            </p>
+                        <div className="flex items-center gap-3 bg-stone-50 border border-stone-200 rounded-2xl px-3 py-1.5">
+                            <div className="w-8 h-8 rounded-full bg-[#F5E6E0] text-[#A85A44] border border-[#E8D0C5] flex items-center justify-center font-bold text-xs uppercase flex-shrink-0">
+                                {(profile?.display_name || user?.email || 'A')[0]}
+                            </div>
+                            <div className="hidden sm:block text-left">
+                                <p className="text-xs font-bold text-stone-900 leading-tight max-w-[140px] truncate">
+                                    {profile?.display_name ?? user?.email}
+                                </p>
+                                <p className="text-[10px] uppercase tracking-wider font-semibold text-stone-400">
+                                    {projects.length} keepsake{projects.length !== 1 ? 's' : ''}
+                                </p>
+                            </div>
                         </div>
+
                         <button
                             onClick={handleSignOut}
-                            className="flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold text-stone-500 hover:text-stone-900 hover:bg-stone-100 transition-all"
+                            className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold uppercase tracking-wider text-stone-500 hover:text-rose-600 hover:bg-rose-50 border border-stone-200 transition-all cursor-pointer"
                             aria-label="Sign out"
                             title="Sign out"
                         >
-                            <LogOut className="w-4 h-4" />
+                            <LogOut className="w-3.5 h-3.5" />
                             <span className="hidden sm:inline">Sign out</span>
                         </button>
                     </div>

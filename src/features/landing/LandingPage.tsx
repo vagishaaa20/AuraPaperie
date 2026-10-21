@@ -185,8 +185,8 @@ export default function LandingPage() {
         <div className="min-h-screen bg-[#FAF8F5] text-stone-900 overflow-hidden font-sans">
             {/* ─── Navbar ─────────────────────────────────────────────────────── */}
             <nav className="fixed top-0 left-0 right-0 z-50 bg-[#FAF8F5]/90 backdrop-blur-md border-b border-stone-200/80 shadow-xs">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between">
-                    <BrandLogo size="md" layout="horizontal" to="/" />
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+                    <BrandLogo size="md" layout="horizontal" theme="light" to="/" />
 
                     <div className="hidden md:flex items-center gap-7">
                         <a href="#themes" className="text-xs uppercase tracking-widest font-bold text-stone-600 hover:text-[#B4654F] transition-colors">Themes</a>
