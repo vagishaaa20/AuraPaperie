@@ -16,7 +16,7 @@ Object.defineProperty(window, 'matchMedia', {
     })),
 })
 
-// Polyfill IntersectionObserver for Framer Motion viewport triggers
+// Polyfill IntersectionObserver
 class MockIntersectionObserver {
     observe = vi.fn()
     unobserve = vi.fn()
@@ -27,7 +27,7 @@ Object.defineProperty(window, 'IntersectionObserver', {
     configurable: true,
     value: MockIntersectionObserver,
 })
-Object.defineProperty(global, 'IntersectionObserver', {
+Object.defineProperty(globalThis, 'IntersectionObserver', {
     writable: true,
     configurable: true,
     value: MockIntersectionObserver,
@@ -44,7 +44,7 @@ Object.defineProperty(window, 'ResizeObserver', {
     configurable: true,
     value: MockResizeObserver,
 })
-Object.defineProperty(global, 'ResizeObserver', {
+Object.defineProperty(globalThis, 'ResizeObserver', {
     writable: true,
     configurable: true,
     value: MockResizeObserver,
@@ -54,7 +54,3 @@ Object.defineProperty(global, 'ResizeObserver', {
 vi.mock('canvas-confetti', () => ({
     default: vi.fn(),
 }))
-
-// Mock audio
-window.HTMLMediaElement.prototype.play = vi.fn().mockResolvedValue(undefined)
-window.HTMLMediaElement.prototype.pause = vi.fn()
